@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App Demo</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        table {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Таблицы</h1>
+    <button onclick="showTable('table1')">Таблица 1</button>
+    <button onclick="showTable('table2')">Таблица 2</button>
+
+    <table id="table1" class="display">
+        <thead><tr><th>Имя</th><th>Возраст</th></tr></thead>
+        <tbody>
+            <tr><td>Алиса</td><td>25</td></tr>
+            <tr><td>Иван</td><td>30</td></tr>
+        </tbody>
+    </table>
+
+    <table id="table2" class="display">
+        <thead><tr><th>Город</th><th>Страна</th></tr></thead>
+        <tbody>
+            <tr><td>Москва</td><td>Россия</td></tr>
+            <tr><td>Берлин</td><td>Германия</td></tr>
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        let initializedTables = {};
+
+        function showTable(id) {
+            $('table').hide();
+            const table = $('#' + id);
+            table.show();
+            if (!initializedTables[id]) {
+                table.DataTable();
+                initializedTables[id] = true;
+            }
+        }
+    </script>
+</body>
+</html>
